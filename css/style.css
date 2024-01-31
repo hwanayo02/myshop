@@ -99,6 +99,10 @@ a:hover{
         top: 25px;
     }
 }
+.top ul.nav.right-nav{
+    margin-left: 558px;
+    margin-right: 0;
+}
 .top ul.nav.right-nav>li{
     padding-right: 5px;
     padding-bottom: 0;
@@ -170,9 +174,59 @@ input.search{
 /* brand */
 .brand{
     font-size: 35px;
-    font-weight: 900;
+    font-weight: 650;
     text-align: center;
     margin-top: 30px;
     margin-bottom: 30px;
     
 }
+
+/********************************* global-nav *******************************/
+nav.global{
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.05);
+}
+.category{
+    line-height: 50px;
+    display: block;
+    font-size: 1.5em;
+    width: 50px;
+    height: 50px;
+    text-align: center;
+}
+.category:hover{
+    color: var(--white-color);
+    background-color: var(--dark-color);
+    transition: all 0.3s;
+}
+ul.pr-category{
+    width: 55%;
+    text-transform: uppercase;
+    line-height: 50px;
+}
+ul.pr-category>li{
+    position: relative;
+}
+ul.pr-category>li>ul.sub-cate{
+    position: absolute;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border: 1px solid rgb(222, 226, 230);
+    background-color: var(--white-color);
+    z-index: 100;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    left: -10px;
+    display: none;
+}
+ul.sub-cate>li{
+    white-space: nowrap;
+    padding: 0px 20px;
+    line-height: 30px;
+}
+ul.global-nav{
+    width: 23%;
+    text-transform: uppercase;
+    line-height: 50px;
+}
+
