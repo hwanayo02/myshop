@@ -37,7 +37,7 @@
       <ul class="add-opt">
             <li class="d-flex align-items-center">
                <div class="total-text col"></div>
-               <ul class="add-opts col-4">
+               <ul class="add-opts col">
                   <li class="addbox d-flex align-items-center">
                   <label class="title-label">수량</label>
                   <div class="input-group">
@@ -153,14 +153,77 @@
             $('.totalmoney').html("");
           }   
       });
-
-      // 본문 상세보기 스크립트
-      $('.nav-pills li').click(function(){
-         $('.nav-pills>li').removeClass('active');
-         $(this).addClass('active');
-      })
-
+   
+     const opt = {
+        infinite: true,
+        slidesToShow: 8,
+        slidesToScroll: 1,
+        centerMode: true,
+        autoplay: true
+     };
+   
+     //본문 상세보기 스크립트
+     $('.nav-pills li').click(function(){
+       $('.nav-pills>li').removeClass('active');
+       $(this).addClass('active');
+       const link = $(this).find('a').attr('href');
+       if(link == "#review"){
+          setTimeout(function(){
+            $('.review-photo').not('.slick-initialized').slick(opt);   
+          }, 200);
+       }else{
+           $('.review-photo').slick('unslick');
+       }
+     });
+   
+    /*
+      viewReview();
+      
+      //슬릭생성
+      $('#review').show(function(){
+         $('.review-photo').slick({
+               slidesToShow: 8,
+               slidesToScroll: 1,
+               centerMode: true
+         });
+      });
+     */
+   
+   //리뷰 팝업창
+   $('.imgs').click(function(e){
+      e.preventDefault();
+      const src = $(this).find('img').attr('src');  //getter
+      $('.imgbox').find('img').attr('src', src).attr('alt', src); //setter
+      $('.rp').fadeIn();
    });
+   
+   $(document).mouseup(function(e){
+   
+      /*
+       if($('.rp').has(e.target).length === 0){
+          $('.rp').fadeOut();
+       }
+      */
+     if($(e.target).hasClass('rp')){
+        $('.rp').fadeOut();
+     }
+      
+   });
+   
+   $('.rp-close').click(function(){
+        $('.rp').fadeOut();
+   });
+   
+   });
+   
+   
+   //리뷰 퍼센트 보기 함수
+   function viewReview(){
+      $('.box-line-color').each(function(){
+         let h = $(this).css('height');
+         $(this).html("<span>"+h+"</span>");
+      });
+   }
    
    function totalMoney(delivery){
       let tm = 0;
@@ -170,7 +233,7 @@
                tm += moneyVal * qt;
                console.log(tm);
                //배송정책
-               if(tm >= 200000) {
+               if(tm > 200000) {
                   delivery = 0;
                }
                let txt = "총 상품금액(수량) : <strong>"+tm.toLocaleString()+"원</strong>+(배송비 :"+delivery.toLocaleString()+"원)";
